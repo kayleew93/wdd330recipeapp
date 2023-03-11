@@ -37,6 +37,12 @@ header {
   width: 100%;
   padding: 0 10px;
 }
+header div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: .2;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -75,12 +81,24 @@ button {
   cursor: pointer;
 }
 
+/* MAIN PAGE */
+.mainpg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+/* RECIPE SEARCH */
+
+/* COLLECTIONS */
+
+/* INDIVIDUAL RECIPE */
+.individual-recipe {
+  height: 80vh;
+  width: 80vh;
+  border: 1px solid var(--primary-color);
+}
 
 @media screen and (min-width: 500px) {
-  body {
-    max-width: 1080px;
-    margin: auto;
-  }
+
 }
 
 footer {
