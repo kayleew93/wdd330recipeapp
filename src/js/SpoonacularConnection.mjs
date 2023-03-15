@@ -16,12 +16,7 @@ export default class SpoonacularConnection {
     // this.category = category;
     // this.path = `../json/${this.category}.json`;
   }
-  /*
-  async getData() {
-    const response = await fetch('https://api.spoonacular.com/recipes/716429/information?apiKey=5330af71810943f4a6021269bbf25094&includeNutrition=true');
-    const data = await convertToJson(response);
-    return data.Result;
-  } */
+
   async findRecipeByIngredients(ingredients) {
     console.log("ingredients");
     console.log("Request", `${baseURL}/findByIngredients?ingredients=${ingredients}&number=1`);
@@ -32,8 +27,6 @@ export default class SpoonacularConnection {
       }
     };
     let data = await fetch(`${baseURL}/findByIngredients?ingredients=${ingredients}&number=1${APIKey}`, options).then(convertToJson);
-    console.log(data);
-    //data = Object.values(data.recipes);
     return data;
   }
   async getRandomRecipes() {
@@ -44,7 +37,6 @@ export default class SpoonacularConnection {
         "Content-Type": "application/json"
       }
     };
-    // return await fetch(`${baseURL}/random?limitLicense=true&number=10${APIKey}`, options).then(convertToJson);
     let data = await fetch(`${baseURL}/random?limitLicense=true&number=2${APIKey}`, options).then(convertToJson);
     data = Object.values(data.recipes);
     return data;

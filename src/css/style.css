@@ -42,7 +42,7 @@ header div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-grow: .2;
+  flex-grow: 0.2;
 }
 .logo {
   line-height: 60px;
@@ -81,6 +81,7 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  display: inline;
 }
 
 /* MAIN PAGE */
@@ -100,7 +101,6 @@ button {
 }
 
 @media screen and (min-width: 500px) {
-
 }
 
 footer {
