@@ -4,7 +4,6 @@ const APIKey = "&apiKey=5330af71810943f4a6021269bbf25094";
 async function convertToJson(res) {
   const data = await res.json();
   if (res.ok) {
-    console.log("MAde it here", data);
     return data;
   } else {
     throw { name: 'servicesError', message: data };
@@ -17,9 +16,18 @@ export default class SpoonacularConnection {
     // this.path = `../json/${this.category}.json`;
   }
 
+  async getRecipeById(id) {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+  let data = await fetch(`${baseURL}/${id}/information?includeNutrition=false${APIKey}`, options).then(convertToJson);
+  return data;
+}
+
   async findRecipeByIngredients(ingredients) {
-    console.log("ingredients");
-    console.log("Request", `${baseURL}/findByIngredients?ingredients=${ingredients}&number=1`);
     const options = {
       method: "GET",
       headers: {
@@ -29,8 +37,8 @@ export default class SpoonacularConnection {
     let data = await fetch(`${baseURL}/findByIngredients?ingredients=${ingredients}&number=1${APIKey}`, options).then(convertToJson);
     return data;
   }
+
   async getRandomRecipes() {
-    let url = `${baseURL}random?number=3${APIKey}`;
     const options = {
       method: "GET",
       headers: {

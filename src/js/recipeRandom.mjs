@@ -1,7 +1,6 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function randomRecipeGenerator(recipe) {
-  console.log("Made it here");
   return `<li>
         <img
           src="${recipe.image}"

@@ -44,13 +44,7 @@ export function renderListWithTemplate(
   position = "afterbegin",
   clear = false
 ) {
-  console.log(typeof(list));
   list = Object.values(list);
-  console.log(typeof(list));
-  console.log(Array.isArray(list));
-  console.log(list);
-  alert(list);
-  console.log("First value", list[0]['title']);
   const htmlStrings = list.map((item) => templateFn(item));
   // if clear is true we need to clear out the contents of the parent.
   if (clear) {
@@ -66,4 +60,11 @@ export function setClick(selector, callback) {
     callback();
   });
   qs(selector).addEventListener("click", callback);
+}
+
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const recipe = urlParams.get('recipeId');
+  return recipe;
 }
