@@ -8,7 +8,7 @@
   --secondary-color: #84dcc6;
   --tertiary-color: #ff6700;
   --light-grey: #cbcbcb;
-  --dark-grey: #4f4f4f4f;
+  --dark-grey: #4f4f4faa;
 
   /* sizes */
   --font-base: 18px;
@@ -23,6 +23,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
+  padding: 1rem;
 }
 img {
   max-width: 100%;
@@ -71,10 +72,11 @@ header div {
 }
 
 button {
-  padding: 0.5em 2em;
+  padding: 0.57rem 2rem;
+  margin: 1rem;
+  border-radius: 5px;
   background-color: var(--secondary-color);
   color: white;
-  margin: auto;
   display: block;
   border: 0;
   font-size: var(--large-font);

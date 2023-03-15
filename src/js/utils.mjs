@@ -35,6 +35,30 @@ export async function loadPartials() {
   renderTemplate(headerTemplate, headerElement);
   renderTemplate(footerTemplate, footerElement);
 }
+
+// function to take a list of objects and a template and insert the objects as HTML into the DOM
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  console.log(typeof(list));
+  list = Object.values(list);
+  console.log(typeof(list));
+  console.log(Array.isArray(list));
+  console.log(list);
+  alert(list);
+  console.log("First value", list[0]['title']);
+  const htmlStrings = list.map((item) => templateFn(item));
+  // if clear is true we need to clear out the contents of the parent.
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
