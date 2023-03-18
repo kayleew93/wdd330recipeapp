@@ -2,11 +2,15 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 function randomRecipeGenerator(recipe) {
   return `<li>
+        <div class="recipe-card">
+        <a href="../views/recipeListing.html?recipeId=${recipe.id}">
         <img
           src="${recipe.image}"
           alt="Image of"/>
         <h2>${recipe.title}</h2>
-        <a href="${recipe.sourceUrl}">Recipe</a>
+        <a href="${recipe.sourceUrl}" target="_blank">Recipe</a>
+        </a>
+        <div>
       </li>`;
 }
 

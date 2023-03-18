@@ -1,14 +1,29 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function singleRecipeGenerator(recipe) {
-  return `<li>
+  let html = `<div class="recipe-card">
         <img
           src="${recipe.image}"
           alt="Image of"/>
         <h2>${recipe.title}</h2>
-        <a href="${recipe.sourceUrl}">Recipe</a>
+        <p>Total Time: ${recipe.readyInMinutes} min</p>
+        <p>${recipe.servings} servings</p>
+        <p>`
+        console.log(recipe.extendedIngredients);
+
+        recipe.extendedIngredients.forEach(element => {
+          html +=`<p>${element}</p>`;
+        }); 
+        
+        
+        
+
+
+  html += `<p>${recipe.instructions}</p>
+        <a href="${recipe.sourceUrl}" target="_blank">Recipe</a>
         <button class="save-btn">Save</button>
-      </li>`;
+        </div>`;
+  return html;
 }
 
 export default class RecipeData {
