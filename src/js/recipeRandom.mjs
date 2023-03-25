@@ -8,7 +8,6 @@ function randomRecipeGenerator(recipe) {
           src="${recipe.image}"
           alt="Image of"/>
         <h2>${recipe.title}</h2>
-        <a href="${recipe.sourceUrl}" target="_blank">Recipe</a>
         </a>
         <div>
       </li>`;

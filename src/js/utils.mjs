@@ -4,13 +4,33 @@ export function getLocalStorage(key) {
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
-}
+
+    // check if there is anything in local storage. If not,
+    // create an empty array and add item. Otherwise, parse and add
+    const collectionsList = (() => {
+      const itemData = localStorage.getItem(key);
+      return itemData === null ? []
+      : JSON.parse(itemData);
+    })();
+  
+    // check if recipeid already in list; otherwise add
+    if (collectionsList.some(e => e === data)) {
+      alertMessage("Already saved!");
+      return;
+    } else {
+      collectionsList.push(data);
+    }
+  
+  
+    // save to local storage
+      localStorage.setItem(key, JSON.stringify(collectionsList));
+      alertMessage("Added to saved!");
+  }
+
 
 // function to take an optional object and a template and insert the objects as HTML into the DOM
 export function renderTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
-  //if there is a callback...call it and pass data
   if (callback) {
     callback(data);
   }
@@ -67,4 +87,17 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   const recipe = urlParams.get('recipeId');
   return recipe;
+}
+
+export function alertMessage(message, scroll = true, duration = 2000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p>`;
+
+  const main = document.querySelector("main");
+  main.prepend(alert);
+
+  setTimeout(function () {
+    main.removeChild(alert);
+  }, duration);
 }

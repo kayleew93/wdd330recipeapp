@@ -45,7 +45,7 @@ export default class SpoonacularConnection {
         "Content-Type": "application/json"
       }
     };
-    let data = await fetch(`${baseURL}/random?limitLicense=true&number=2${APIKey}`, options).then(convertToJson);
+    let data = await fetch(`${baseURL}/random?limitLicense=true&number=1${APIKey}`, options).then(convertToJson);
     data = Object.values(data.recipes);
     return data;
   }

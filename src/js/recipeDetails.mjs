@@ -1,28 +1,29 @@
 import { renderListWithTemplate } from "./utils.mjs";
+import { addToCollection } from "./personalCollections.mjs";
 
 function singleRecipeGenerator(recipe) {
-  let html = `<div class="recipe-card">
+  let html = `
         <img
           src="${recipe.image}"
           alt="Image of"/>
         <h2>${recipe.title}</h2>
         <p>Total Time: ${recipe.readyInMinutes} min</p>
         <p>${recipe.servings} servings</p>
-        <p>`
-        console.log(recipe.extendedIngredients);
+        <h3>Ingredients:</h3>`
 
         recipe.extendedIngredients.forEach(element => {
-          html +=`<p>${element}</p>`;
+          html +=`<p>${element.original}</p>`;
+        }); 
+
+        html += `<h3>Instructions:</h3>`
+
+        recipe.analyzedInstructions[0].steps.forEach((element, i) => {
+          html +=`<p>${i+1}. ${element.step}</p>`;
         }); 
         
-        
-        
-
-
-  html += `<p>${recipe.instructions}</p>
+  html += `
         <a href="${recipe.sourceUrl}" target="_blank">Recipe</a>
-        <button class="save-btn">Save</button>
-        </div>`;
+        <button class="save-btn">Save</button>`;
   return html;
 }
 
@@ -35,6 +36,10 @@ export default class RecipeData {
   async init() {
     this.recipe = await this.dataSource.getRecipeById(this.recipeId);
     this.renderRecipeDetails(this.listElement);
+    
+    document
+      .getElementById("save-btn")
+      .addEventListener("click", this.addToCollection.bind(this));
   }
 
   renderRecipeDetails(selector) {
