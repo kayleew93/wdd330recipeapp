@@ -84,6 +84,9 @@ input {
 }
 
 /* utility classes */
+.hide {
+  display: none !important;
+}
 .alert {
   position: absolute;
   top: 1rem;

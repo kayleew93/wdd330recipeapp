@@ -1,4 +1,4 @@
-import { setLocalStorage, alertMessage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, alertMessage, getLocalStorage, removeFromLocalStorage } from "./utils.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 export function addToCollection(recipeid) {
@@ -16,6 +16,7 @@ function listRecipeGenerator(recipe) {
             <p>${recipe.summary}</p>
             <br><br>
             <a class="button" href="../views/recipeListing.html?recipeId=${recipe.id}">View Recipe</a>
+            <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">Remove</a>
         <div>
     <div>
   </li>`;
@@ -42,6 +43,16 @@ export default class personalRecipeData {
       );
 
       this.renderCollectionRecipes(list);
+
+      const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
+const deletebtns = Array.from(deletebtnsNodeList);
+deletebtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const recipeId = btn.dataset.recipeId;
+    removeFromLocalStorage("collection", recipeId);
+    location.reload();
+  });
+});
     }
   }
 

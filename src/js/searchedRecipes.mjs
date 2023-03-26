@@ -12,7 +12,7 @@ function searchedRecipeGenerator(recipe) {
           <h2>${recipe.title}</h2>
         <div>
         </a>
-        <a href="#" class="save-btn" data-recipe-id="${recipe.id}">	&#10084;</a>
+        <a href="#" class="save-btn" data-recipe-id="${recipe.id}">&#10084;</a>
         <div>
       </li>`;
 }

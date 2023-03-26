@@ -2,6 +2,19 @@
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
+export function removeFromLocalStorage(key, data) {
+  const collectionsList = (() => {
+    const itemData = localStorage.getItem(key);
+    return itemData === null ? [] : JSON.parse(itemData);
+  })();
+
+  // filter out the specific value from the array
+  const updatedList = collectionsList.filter(e => e !== data);
+
+  // save the updated list back to local storage
+  localStorage.setItem(key, JSON.stringify(updatedList));
+}
 // save data to local storage
 export function setLocalStorage(key, data) {
 
