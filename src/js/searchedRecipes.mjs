@@ -1,8 +1,8 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, getLocalStorage } from "./utils.mjs";
 import { addToCollection } from "./personalCollections.mjs";
 
 function searchedRecipeGenerator(recipe) {
-  return `<li>
+  let html = `<li>
         <div class="list-recipe-card">
         <a href="../views/recipeListing.html?recipeId=${recipe.id}">
         <img
@@ -12,9 +12,16 @@ function searchedRecipeGenerator(recipe) {
           <h2>${recipe.title}</h2>
         <div>
         </a>
-        <a href="#" class="save-btn" data-recipe-id="${recipe.id}">&#10084;</a>
+        <a href="#" class="save-btn`;
+
+        let ids = getLocalStorage("collection");
+        if (ids.includes(recipe.id.toString())) {
+          html += ` hide`;
+        }
+        html += `" data-recipe-id="${recipe.id}">&#10084;</a>
         <div>
-      </li>`;
+      </li>`
+      return html;
 }
 
 export default class RecipeData {

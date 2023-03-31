@@ -54,7 +54,7 @@ header div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-grow: 0.2;
+  gap: 2rem;
 }
 .logo {
   line-height: 60px;
@@ -96,6 +96,10 @@ input {
   padding: 1rem;
   width: fit-content;
   border-radius: 1rem;
+}
+
+.alert p {
+  color: white;
 }
 
 .highlight {
@@ -184,6 +188,8 @@ input {
   align-items: center;
   gap: 1rem;
   border: 2px solid var(--primary-color);
+  background-color: rgb(245, 245, 245);
+  margin: 1rem 2rem;
 }
 
 .horizontal-recipe-card img {
@@ -217,6 +223,11 @@ input {
 
 .individual-recipe img {
   float: right;
+}
+
+.individual-recipe div {
+  height: 1rem;
+  position: relative;
 }
 
 @media screen and (min-width: 500px) {

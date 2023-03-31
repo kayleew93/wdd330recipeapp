@@ -3,14 +3,22 @@ import { addToCollection } from "./personalCollections.mjs";
 
 function singleRecipeGenerator(recipe) {
   let html = `
-        <img
-          src="${recipe.image}"
-          alt="Image of"/>
-        <h2>${recipe.title}</h2>
-        <a href="${recipe.sourceUrl}" target="_blank">Original Recipe</a>
-        <p>Total Time: ${recipe.readyInMinutes} min</p>
-        <p>${recipe.servings} servings</p>
-        <h3>Ingredients:</h3>`;
+    <img
+      src="${recipe.image}"
+      alt="Image of"/>
+      <div>
+      <a href="#" class="save-btn`;
+
+        let ids = getLocalStorage("collection");
+        if (ids.includes(recipe.id.toString())) {
+          html += ` hide`;
+        }
+        html += `" data-recipe-id="${recipe.id}">&#10084;</a></div>
+                <h2>${recipe.title}</h2>
+                <a href="${recipe.sourceUrl}" target="_blank">Original Recipe</a>
+                <p>Total Time: ${recipe.readyInMinutes} min</p>
+                <p>${recipe.servings} servings</p>
+                <h3>Ingredients:</h3>`;
 
   recipe.extendedIngredients.forEach((element) => {
     html += `<p>${element.original}</p>`;
@@ -22,14 +30,6 @@ function singleRecipeGenerator(recipe) {
     html += `<p>${i + 1}. ${element.step}</p>`;
   });
 
-  html += `
-        <a class="save-btn`;
-
-  let ids = getLocalStorage("collection");
-  if (!ids.includes(recipe.id)) {
-    html += ` hide`;
-  }
-  html += `">&#10084;</a>`;
   return html;
 }
 
@@ -43,14 +43,23 @@ export default class RecipeData {
     this.recipe = await this.dataSource.getRecipeById(this.recipeId);
     this.renderRecipeDetails(this.listElement);
 
-    document.querySelector(".save-btn").addEventListener("click", () => {
-      this.addToCollection();
-    });
+    // document.querySelector(".save-btn").addEventListener("click", () => {
+    //   this.addToCollection();
+    // });
+
+    const saveBtn = document.querySelector(".save-btn");
+  saveBtn.addEventListener("click", () => {
+    const recipeId = saveBtn.dataset.recipeId;
+    addToCollection(recipeId);
+    this.renderRecipeDetails(this.listElement);
+  });
+
     
   }
 
   renderRecipeDetails(selector) {
     const element = document.querySelector(selector);
+    element.innerHTML = '';
     element.insertAdjacentHTML(
       "afterbegin",
       singleRecipeGenerator(this.recipe)
