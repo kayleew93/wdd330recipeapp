@@ -219,6 +219,19 @@ input {
   margin-top: 1rem;
 }
 
+/* NOT FOUND */
+.not-found div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.not-found img {
+  width: 50rem;
+  padding-bottom: 3rem;
+}
+
 /* INDIVIDUAL RECIPE */
 .individual-recipe {
   padding: 2rem;
