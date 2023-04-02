@@ -15,10 +15,11 @@ function searchedRecipeGenerator(recipe) {
         <a href="#" class="save-btn`;
 
         let ids = getLocalStorage("collection");
-        if (ids.includes(recipe.id.toString())) {
-          html += ` hide`;
+        console.log("ids: ", ids);
+        if (ids && ids.includes(recipe.id.toString())) {
+          html += ` loved`;
         }
-        html += `" data-recipe-id="${recipe.id}">&#10084;</a>
+        html += `" data-recipe-id="${recipe.id}"><span>&#10084;</span></a></div>
         <div>
       </li>`
       return html;
@@ -36,13 +37,17 @@ export default class RecipeData {
  
     const svbtnsNodeList = document.querySelectorAll(".save-btn");
     const svbtns = Array.from(svbtnsNodeList);
-    svbtns.forEach(btn => btn.addEventListener("click", function() {
-       const recipeId = this.dataset.recipeId;
-       addToCollection(recipeId);
-    }));
- }
+    const self = this;
+    svbtns.forEach(btn =>
+      btn.addEventListener("click", function () {
+        const recipeId = this.dataset.recipeId;
+        addToCollection(recipeId);
+        self.renderRecipes(list);
+      })
+    );
+  }
 
   renderRecipes(list) {
-    renderListWithTemplate(searchedRecipeGenerator, this.listElement, list);
+    renderListWithTemplate(searchedRecipeGenerator, this.listElement, list, true);
   }
 }

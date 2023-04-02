@@ -135,6 +135,17 @@ input {
   right: 1rem;
 }
 
+.save-btn.loved {
+  background-color: transparent;
+}
+
+.save-btn.loved span {
+  color: transparent;
+  font-size: 60px; 
+  line-height: 1; 
+  -webkit-text-stroke: 3px var(--tertiary-color);
+}
+
 /* MAIN PAGE */
 .mainpg {
   display: grid;

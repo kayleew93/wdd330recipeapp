@@ -69,17 +69,16 @@ export async function loadPartials() {
   renderTemplate(footerTemplate, footerElement);
 }
 
-// function to take a list of objects and a template and insert the objects as HTML into the DOM
+// takes a list of objects & template & inserts as HTML into DOM
 export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
-  position = "afterbegin",
-  clear = false
+  clear = false,
+  position = "afterbegin"
 ) {
   list = Object.values(list);
   const htmlStrings = list.map((item) => templateFn(item));
-  // if clear is true we need to clear out the contents of the parent.
   if (clear) {
     parentElement.innerHTML = "";
   }

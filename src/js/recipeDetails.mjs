@@ -10,10 +10,10 @@ function singleRecipeGenerator(recipe) {
       <a href="#" class="save-btn`;
 
         let ids = getLocalStorage("collection");
-        if (ids.includes(recipe.id.toString())) {
-          html += ` hide`;
+        if (ids && ids.includes(recipe.id.toString())) {
+          html += ` loved`;
         }
-        html += `" data-recipe-id="${recipe.id}">&#10084;</a></div>
+        html += `" data-recipe-id="${recipe.id}"><span>&#10084;</span></a></div>
                 <h2>${recipe.title}</h2>
                 <a href="${recipe.sourceUrl}" target="_blank">Original Recipe</a>
                 <p>Total Time: ${recipe.readyInMinutes} min</p>
