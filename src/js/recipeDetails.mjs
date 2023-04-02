@@ -25,10 +25,10 @@ function singleRecipeGenerator(recipe) {
   });
 
   html += `<h3>Instructions:</h3>`;
-
-  recipe.analyzedInstructions[0].steps.forEach((element, i) => {
+  console.log(recipe);
+  if (recipe.analyzedInstructions[0]) {recipe.analyzedInstructions[0].steps.forEach((element, i) => {
     html += `<p>${i + 1}. ${element.step}</p>`;
-  });
+  });} else {html += `<p>Oops! Check out the <a href="${recipe.sourceUrl}" target="_blank">site</a> for instructions.</p>`;}
 
   return html;
 }

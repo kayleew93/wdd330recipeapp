@@ -32,7 +32,7 @@ export default class RecipeData {
   async init() {
     const ingredients = document.querySelector("#ingredients-input").value;
     let list = await this.dataSource.findRecipeByIngredients(ingredients);
-    this.renderRecipes(list);
+    (list[0]) ? this.renderRecipes(list) : this.listElement.innerHTML = `<h2>No recipes! Try again.</h2>`;
  
     const svbtnsNodeList = document.querySelectorAll(".save-btn");
     const svbtns = Array.from(svbtnsNodeList);
