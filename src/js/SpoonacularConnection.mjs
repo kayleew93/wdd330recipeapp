@@ -38,6 +38,26 @@ export default class SpoonacularConnection {
     return data;
   }
 
+  async findRecipeByAdvancedFilter(ingredients, diets = false) {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    let urlParams = new URLSearchParams();
+    if (ingredients) urlParams.append("includeIngredients", ingredients);
+    if (diets) urlParams.append("diet", diets);
+
+    let url = `${baseURL}/complexSearch?number=1${APIKey}&${urlParams.toString()}&number=1${APIKey}`;
+    console.log("url", url);
+    let data = await fetch(url, options).then(convertToJson);
+    data = data.results;
+    return data;
+  }
+
+
   async getRandomRecipes() {
     const options = {
       method: "GET",
