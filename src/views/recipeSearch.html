@@ -16,11 +16,15 @@
         <input type="checkbox" name="Paleo" id="paleo"><label for="Paleo">Paleo</label>
         <input type="checkbox" name="Whole30" id="whole30"><label for="Whole30">Whole30</label>
       </div>
-      <h2>Ingredients:</h2>
+      <h2>Ingredients to Include:</h2>
       <p>Please enter ingredients separated by a comma & no spaces.</p>
       <p>e.g. flour,milk,butter,sugar</p>
       <input type="text" id="ingredients-input" />
-      <button id="ingredients-input-button" class="button">Find Recipes</button>
+      <h2>Ingredients to Exclude:</h2>
+      <p>Please enter any ingredients to exclude separated by a comma & no spaces.</p>
+      <p>e.g. shellfish,peanuts,marshmallows</p>
+      <input type="text" id="exclude-ingredients-input" />
+      <br><button id="ingredients-input-button" class="button">Find Recipes</button>
       <div class="searched-recipe-list"></div>
     </main>
     <footer></footer>

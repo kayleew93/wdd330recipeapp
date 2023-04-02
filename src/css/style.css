@@ -200,7 +200,7 @@ input {
   text-align: center;
 }
 
-#ingredients-input {
+#ingredients-input, #exclude-ingredients-input {
   height: 2rem;
   width: 50vw;
 
