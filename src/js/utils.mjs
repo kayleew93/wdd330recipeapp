@@ -15,6 +15,7 @@ export function removeFromLocalStorage(key, data) {
   // save the updated list back to local storage
   localStorage.setItem(key, JSON.stringify(updatedList));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
 
@@ -74,7 +75,7 @@ export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
-  clear = false,
+  clear = true,
   position = "afterbegin"
 ) {
   list = Object.values(list);

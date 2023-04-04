@@ -242,6 +242,10 @@ input {
   margin-top: 1rem;
 }
 
+#add-collection-name {
+  display: inline-block;
+}
+
 /* NOT FOUND */
 .not-found div {
   display: flex;

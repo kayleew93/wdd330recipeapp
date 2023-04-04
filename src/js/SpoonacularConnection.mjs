@@ -52,7 +52,6 @@ export default class SpoonacularConnection {
     if (excludeIngredients) urlParams.append("excludeIngredients", excludeIngredients);
 
     let url = `${baseURL}/complexSearch?${urlParams.toString()}&number=1${APIKey}`;
-    console.log("url", url);
     let data = await fetch(url, options).then(convertToJson);
     data = data.results;
     return data;

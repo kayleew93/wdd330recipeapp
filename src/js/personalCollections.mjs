@@ -1,8 +1,13 @@
-import { setLocalStorage, alertMessage, getLocalStorage, removeFromLocalStorage } from "./utils.mjs";
+import {
+  setLocalStorage,
+  alertMessage,
+  getLocalStorage,
+  removeFromLocalStorage,
+} from "./utils.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 export function addToCollection(recipeid) {
-  setLocalStorage("collection", recipeid);
+  setLocalStorage("All Recipes", recipeid);
 }
 
 function listRecipeGenerator(recipe) {
@@ -23,11 +28,17 @@ function listRecipeGenerator(recipe) {
   return html;
 }
 
+function collectionListGenerator(collectionTitle) {
+  return `<a>${collectionTitle}</a>`
+}
+
 export default class personalRecipeData {
   constructor(dataSource, listElement, key) {
     this.dataSource = dataSource;
     this.listElement = listElement;
     this.key = key;
+    this.collectionsKey = "collectionTitles";
+    this.collectionsElement = document.getElementById("collections-titles");
   }
   async init() {
     let collectionsIds = getLocalStorage(this.key);
@@ -45,18 +56,32 @@ export default class personalRecipeData {
       this.renderCollectionRecipes(list);
 
       const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
-const deletebtns = Array.from(deletebtnsNodeList);
-deletebtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const recipeId = btn.dataset.recipeId;
-    removeFromLocalStorage("collection", recipeId);
-    location.reload();
-  });
-});
+      const deletebtns = Array.from(deletebtnsNodeList);
+      deletebtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const recipeId = btn.dataset.recipeId;
+          removeFromLocalStorage(this.key, recipeId);
+          location.reload();
+        });
+      });
     }
+
+    const addToCollectionTitle = document.getElementById("add-collection-name");
+      addToCollectionTitle.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          setLocalStorage(this.collectionsKey, addToCollectionTitle.value);
+
+          const collections = getLocalStorage(this.collectionsKey);
+          this.renderCollectionsList(collections);
+  }
+});
   }
 
   renderCollectionRecipes(list) {
     renderListWithTemplate(listRecipeGenerator, this.listElement, list);
   }
+
+  renderCollectionsList(collections) {
+    renderListWithTemplate(collectionListGenerator, this.collectionsElement, collections);
+}
 }
