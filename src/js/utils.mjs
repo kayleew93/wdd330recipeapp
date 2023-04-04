@@ -43,8 +43,8 @@ export function setLocalStorage(key, data) {
 
 
 // function to take an optional object and a template and insert the objects as HTML into the DOM
-export function renderTemplate(template, parentElement, data, callback) {
-  parentElement.insertAdjacentHTML("afterbegin", template);
+export function renderTemplate(template, parentElement, data, callback, location = "afterbegin") {
+  parentElement.insertAdjacentHTML(location, template);
   if (callback) {
     callback(data);
   }

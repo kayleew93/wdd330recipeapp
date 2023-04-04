@@ -44,7 +44,6 @@ export default class personalRecipeData {
 
 
       const collections = getLocalStorage(this.collectionsKey);
-      console.log("List of Keys: ", collections);
       this.renderCollectionsList(collections);
 
 
@@ -83,7 +82,8 @@ export default class personalRecipeData {
   }
 
   renderCollectionTitle(title) {
-    renderTemplate(`<h2 class="list-title">${title}</h2>`, this.collectionsElement, title);
+    renderTemplate(`<li><a href="#${title}">${title}</a></li>`, document.getElementById("collections-nav"), title, false, "beforeend");
+    renderTemplate(`<h2 class="list-title" id="${title}">${title}</h2>`, this.collectionsElement, title, false, "beforeend");
   }
 
   async renderCollectionsList(collections) {
