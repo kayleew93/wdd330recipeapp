@@ -75,7 +75,7 @@ export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
-  clear = true,
+  clear = false,
   position = "afterbegin"
 ) {
   list = Object.values(list);

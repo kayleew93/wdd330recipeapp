@@ -3,6 +3,7 @@ import {
   alertMessage,
   getLocalStorage,
   removeFromLocalStorage,
+  renderTemplate
 } from "./utils.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
@@ -28,32 +29,24 @@ function listRecipeGenerator(recipe) {
   return html;
 }
 
-function collectionListGenerator(collectionTitle) {
-  return `<a>${collectionTitle}</a>`
-}
-
 export default class personalRecipeData {
   constructor(dataSource, listElement, key) {
     this.dataSource = dataSource;
     this.listElement = listElement;
     this.key = key;
     this.collectionsKey = "collectionTitles";
-    this.collectionsElement = document.getElementById("collections-titles");
+    this.collectionsElement = document.querySelector(".collections-titles");
   }
-  async init() {
-    let collectionsIds = getLocalStorage(this.key);
-    let list = [];
-    if (collectionsIds === null) {
-      this.listElement.innerHTML = `<div class="not-found"><h1>No recipes! Go find some fun food to make!</h1><a href="../../">Go back to home</a><div><img src="https://images.unsplash.com/photo-1555861496-0666c8981751?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"><div></div>`;
-    } else {
-      await Promise.all(
-        collectionsIds.map(async (id) => {
-          const recipe = await this.dataSource.getRecipeById(id);
-          list.push(recipe);
-        })
-      );
 
-      this.renderCollectionRecipes(list);
+  async init() {
+    if(!getLocalStorage(this.collectionsKey)) {
+      setLocalStorage(this.collectionsKey, this.key);}
+
+
+      const collections = getLocalStorage(this.collectionsKey);
+      console.log("List of Keys: ", collections);
+      this.renderCollectionsList(collections);
+
 
       const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
       const deletebtns = Array.from(deletebtnsNodeList);
@@ -64,7 +57,15 @@ export default class personalRecipeData {
           location.reload();
         });
       });
-    }
+    
+      const listtitles = document.querySelectorAll(".list-title");
+      const titles = Array.from(listtitles);
+      titles.forEach((title) => {
+        title.addEventListener("click", () => {
+          // TODO: finish this
+          //this.renderCollectionsList();
+        });
+      });
 
     const addToCollectionTitle = document.getElementById("add-collection-name");
       addToCollectionTitle.addEventListener("keydown", (event) => {
@@ -81,7 +82,39 @@ export default class personalRecipeData {
     renderListWithTemplate(listRecipeGenerator, this.listElement, list);
   }
 
-  renderCollectionsList(collections) {
-    renderListWithTemplate(collectionListGenerator, this.collectionsElement, collections);
+  renderCollectionTitle(title) {
+    renderTemplate(`<h2 class="list-title">${title}</h2>`, this.collectionsElement, title);
+  }
+
+  async renderCollectionsList(collections) {
+    for (const title of collections) {
+      this.renderCollectionTitle(title);
+      let collectionsIds = getLocalStorage(title);
+      let list = [];
+      if (collectionsIds === null) {
+        this.listElement.innerHTML = `<div class="not-found"><h1>No recipes! Go find some fun food to make!</h1><a href="../../">Go back to home</a><div><img src="https://images.unsplash.com/photo-1555861496-0666c8981751?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"><div></div>`;
+      } else {
+        await Promise.all(
+          collectionsIds.map(async (id) => {
+            const recipe = await this.dataSource.getRecipeById(id);
+            list.push(recipe);
+          })
+        );
+        this.renderCollectionRecipes(list);
+      }
+    }
+  }
 }
-}
+
+
+// let collectionsIds = getLocalStorage(this.key);
+    // let list = [];
+    // if (collectionsIds === null) {
+    //   this.listElement.innerHTML = `<div class="not-found"><h1>No recipes! Go find some fun food to make!</h1><a href="../../">Go back to home</a><div><img src="https://images.unsplash.com/photo-1555861496-0666c8981751?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"><div></div>`;
+    // } else {
+    //   await Promise.all(
+    //     collectionsIds.map(async (id) => {
+    //       const recipe = await this.dataSource.getRecipeById(id);
+    //       list.push(recipe);
+    //     })
+    //   );
