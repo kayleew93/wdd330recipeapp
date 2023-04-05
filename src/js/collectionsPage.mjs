@@ -52,15 +52,19 @@ import {
 
         // add dropdown options for each value in local storage
         if (this.key == "All Recipes") {
-        const dropdownContainer = document.querySelector('.dropdown-container');
+        const dropdownContainersNodeList = document.querySelectorAll('.dropdown-container');
+        const dropdownContainers = Array.from(dropdownContainersNodeList);
         const values = getLocalStorage('collectionTitles');
+
         // only show list if there are other collections
         if (values.length > 1) {
+          dropdownContainers.forEach((container) => {
+            console.log("Values", values);
           const options = values.map((value) => {
             if (value == "All Recipes") {return};
             return `<option value="${value}">${value}</option>`;
           }).join('');
-          dropdownContainer.innerHTML = `<select>${options}</select>`;}}
+          container.innerHTML = `<select>${options}</select>`;})}
   
         const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
         const deletebtns = Array.from(deletebtnsNodeList);
@@ -71,7 +75,7 @@ import {
             location.reload();
           });
         });
-    }
+    }}
   
     renderCollectionRecipes(list) {
       renderListWithTemplate(listRecipeGenerator, this.listElement, list);

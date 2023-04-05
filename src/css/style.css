@@ -89,6 +89,11 @@ input {
   height: 2rem;
   padding-left: 0.25rem;
   color: var(--primary-color);
+  font-family: var(--font-body);
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
 }
 
 /* utility classes */
@@ -201,9 +206,11 @@ input {
 }
 
 #ingredients-input, #exclude-ingredients-input {
-  height: 2rem;
-  width: 50vw;
-
+  margin-top: 15px;
+  height: 3rem;
+  width: 75%;
+  border-radius: 10px;
+  border: 1px solid black;
 }
 
 .diet input {
@@ -213,6 +220,21 @@ input {
 
 .diet label {
   margin-right: 10px;
+}
+
+.search-menu {
+
+}
+
+
+
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.search-img {
+  align-self: center;
 }
 
 /* COLLECTIONS */
@@ -248,14 +270,21 @@ input {
 }
 
 .collection-card {
-    height: 10rem;
-    width: 10rem;
+    height: 15rem;
+    width: 15rem;
+    font-size: 1.75rem;
+    border-radius: 10px;
     background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     margin: 1rem;
+    transition: scale .2s ease-in-out;
+}
+
+.collection-card:hover {
+  scale: 1.03;
 }
 
 .collection-card a {
@@ -270,6 +299,31 @@ input {
 
 .collections-list {
   display: flex;
+}
+
+select, button {
+    position: absolute;
+    right: 5px;
+    font-family: var(--font-body);
+    font-size: var(--small-font);
+    bottom: 1rem;
+}
+select {
+  right: 4rem;
+  border-radius: 5px;
+  bottom: 1.1rem;
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: .25rem .5rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.find-recipes-btn {
+  position: inherit;
 }
 
 /* NOT FOUND */
