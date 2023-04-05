@@ -8,7 +8,6 @@ loadPartials();
 const dataSource = new SpoonacularConnection();
 const element = document.querySelector("#collectionsPageList");
 const key = getParam("collectionTitle");
-console.log("Key: ", key);
 
 const recipeList = new collectionRecipeData(dataSource, element, key);
 recipeList.init();

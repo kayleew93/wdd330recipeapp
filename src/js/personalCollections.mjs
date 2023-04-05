@@ -65,38 +65,3 @@ export default class personalRecipeData {
   }
 
 }
-  /*
-  async renderCollectionsList(collections) {
-    for (const title of collections) {
-      this.renderCollectionTitle(title);
-      let collectionsIds = getLocalStorage(title);
-      let list = [];
-      if (collectionsIds === null) {
-        this.listElement.innerHTML = `<div class="not-found"><h1>No recipes! Go find some fun food to make!</h1><a href="../../">Go back to home</a><div><img src="https://images.unsplash.com/photo-1555861496-0666c8981751?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"><div></div>`;
-      } else {
-        await Promise.all(
-          collectionsIds.map(async (id) => {
-            const recipe = await this.dataSource.getRecipeById(id);
-            list.push(recipe);
-            console.log("list", list);
-            this.renderCollectionRecipes(list);
-          })
-        );
-        
-      }
-    }
-  }
-}*/
-
-
-// let collectionsIds = getLocalStorage(this.key);
-    // let list = [];
-    // if (collectionsIds === null) {
-    //   this.listElement.innerHTML = `<div class="not-found"><h1>No recipes! Go find some fun food to make!</h1><a href="../../">Go back to home</a><div><img src="https://images.unsplash.com/photo-1555861496-0666c8981751?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"><div></div>`;
-    // } else {
-    //   await Promise.all(
-    //     collectionsIds.map(async (id) => {
-    //       const recipe = await this.dataSource.getRecipeById(id);
-    //       list.push(recipe);
-    //     })
-    //   );

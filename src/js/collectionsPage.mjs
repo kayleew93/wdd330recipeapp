@@ -19,7 +19,7 @@ import {
               <br><br>
               <a class="button" href="../views/recipeListing.html?recipeId=${recipe.id}">View Recipe</a>
               <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">×</a>
-              ${JSON.parse(localStorage.getItem('temp'))[0] === "All Recipes" ? '<div class="dropdown-container addColl"></div><button class="addColl">Add</button>' : ''}
+              ${localStorage.getItem('temp') === "All Recipes" ? `<div class="dropdown-container addColl"></div><button class="addColl add-btn" data-recipe-id="${recipe.id}">Add</button>` : ''}
           <div>
       <div>
     </li>`;
@@ -34,7 +34,7 @@ import {
     }
   
     async init() {
-        setLocalStorage("temp", this.key);
+        localStorage.setItem("temp", this.key);
 
         const collectionIds = getLocalStorage(this.key);
 
@@ -49,7 +49,7 @@ import {
             })
           );}
         this.renderCollectionRecipes(list);
-            localStorage.getItem("temp") === "All Recipes" ? console.log("yes") : console.log(JSON.parse(localStorage.getItem('temp'))[0]);
+
         // add dropdown options for each value in local storage
         if (this.key == "All Recipes") {
         const dropdownContainer = document.querySelector('.dropdown-container');
@@ -75,6 +75,22 @@ import {
   
     renderCollectionRecipes(list) {
       renderListWithTemplate(listRecipeGenerator, this.listElement, list);
+
+      const addbtnsNodeList = document.querySelectorAll(".add-btn");
+      if (addbtnsNodeList) {
+        const addbtns = Array.from(addbtnsNodeList);
+        addbtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const dropdownContainer = document.querySelector('.dropdown-container');
+            const select = dropdownContainer.querySelector('select');
+            const selectedValue = select.options[select.selectedIndex].value;
+
+            const recipeId = btn.dataset.recipeId;
+            setLocalStorage(selectedValue, recipeId);
+            location.reload();
+    });
+  });
+}
     }
   
   }
