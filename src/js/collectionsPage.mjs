@@ -19,6 +19,7 @@ import {
               <br><br>
               <a class="button" href="../views/recipeListing.html?recipeId=${recipe.id}">View Recipe</a>
               <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">×</a>
+              ${JSON.parse(localStorage.getItem('temp'))[0] === "All Recipes" ? '<div class="dropdown-container addColl"></div><button class="addColl">Add</button>' : ''}
           <div>
       <div>
     </li>`;
@@ -33,6 +34,8 @@ import {
     }
   
     async init() {
+        setLocalStorage("temp", this.key);
+
         const collectionIds = getLocalStorage(this.key);
 
         let list = [];
@@ -46,8 +49,18 @@ import {
             })
           );}
         this.renderCollectionRecipes(list);
-  
-  
+            localStorage.getItem("temp") === "All Recipes" ? console.log("yes") : console.log(JSON.parse(localStorage.getItem('temp'))[0]);
+        // add dropdown options for each value in local storage
+        if (this.key == "All Recipes") {
+        const dropdownContainer = document.querySelector('.dropdown-container');
+        const values = getLocalStorage('collectionTitles');
+        // only show list if there are other collections
+        if (values.length > 1) {
+          const options = values.map((value) => {
+            if (value == "All Recipes") {return};
+            return `<option value="${value}">${value}</option>`;
+          }).join('');
+          dropdownContainer.innerHTML = `<select>${options}</select>`;}}
   
         const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
         const deletebtns = Array.from(deletebtnsNodeList);
