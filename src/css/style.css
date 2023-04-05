@@ -90,10 +90,8 @@ input {
   padding-left: 0.25rem;
   color: var(--primary-color);
   font-family: var(--font-body);
-}
-
-input[type="checkbox"]:checked {
-  background-color: var(--primary-color);
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
 }
 
 /* utility classes */
@@ -209,8 +207,6 @@ input[type="checkbox"]:checked {
   margin-top: 15px;
   height: 3rem;
   width: 75%;
-  border-radius: 10px;
-  border: 1px solid black;
 }
 
 .diet input {
