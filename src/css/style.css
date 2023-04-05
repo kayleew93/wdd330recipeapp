@@ -246,6 +246,31 @@ input {
   display: inline-block;
 }
 
+.collection-card {
+    height: 10rem;
+    width: 10rem;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 1rem;
+}
+
+.collection-card a {
+  color: white;
+}
+
+.collection-card .delete-btn {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.collections-list {
+  display: flex;
+}
+
 /* NOT FOUND */
 .not-found div {
   display: flex;

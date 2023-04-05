@@ -80,6 +80,7 @@ export function renderListWithTemplate(
 ) {
   list = Object.values(list);
   const htmlStrings = list.map((item) => templateFn(item));
+  console.log("is it clear: ", clear);
   if (clear) {
     parentElement.innerHTML = "";
   }

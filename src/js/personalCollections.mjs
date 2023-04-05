@@ -29,6 +29,16 @@ function listRecipeGenerator(recipe) {
   return html;
 }
 
+function titleCardGenerator(title) {
+  let html = `<div class="collection-card">
+    <a href="../views/collectionsPage.html?collectionTitle=${title}">${title}</a>`;
+    
+    (title != "All Recipes") ? html += `<a href="#" class="delete-btn" data-title="${title}">×</a>` : "";
+
+  html += `</div>`;
+  return html;
+}
+
 export default class personalRecipeData {
   constructor(dataSource, listElement, key) {
     this.dataSource = dataSource;
@@ -42,50 +52,40 @@ export default class personalRecipeData {
     if(!getLocalStorage(this.collectionsKey)) {
       setLocalStorage(this.collectionsKey, this.key);}
 
-
       const collections = getLocalStorage(this.collectionsKey);
       this.renderCollectionsList(collections);
-
 
       const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
       const deletebtns = Array.from(deletebtnsNodeList);
       deletebtns.forEach((btn) => {
         btn.addEventListener("click", () => {
-          const recipeId = btn.dataset.recipeId;
-          removeFromLocalStorage(this.key, recipeId);
-          location.reload();
+          console.log("clicked!");
+          if (confirm("Do you want to delete this collection and all associated recipes? NOTE: This action cannot be undone.")) {
+          const title = btn.dataset.title;
+          console.log("Title: ", this.key);
+          removeFromLocalStorage(this.collectionsKey, title);
+          localStorage.removeItem(title);
+          location.reload();}
         });
       });
     
-      const listtitles = document.querySelectorAll(".list-title");
-      const titles = Array.from(listtitles);
-      titles.forEach((title) => {
-        title.addEventListener("click", () => {
-          // TODO: finish this
-          //this.renderCollectionsList();
-        });
-      });
-
     const addToCollectionTitle = document.getElementById("add-collection-name");
       addToCollectionTitle.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           setLocalStorage(this.collectionsKey, addToCollectionTitle.value);
-
           const collections = getLocalStorage(this.collectionsKey);
-          this.renderCollectionsList(collections);
+          this.renderCollectionsList(collections, true);
+          location.reload();
   }
 });
   }
 
-  renderCollectionRecipes(list) {
-    renderListWithTemplate(listRecipeGenerator, this.listElement, list);
+  renderCollectionsList(list, clear = false) {
+    renderListWithTemplate(titleCardGenerator, this.listElement, list, clear);
   }
 
-  renderCollectionTitle(title) {
-    renderTemplate(`<li><a href="#${title}">${title}</a></li>`, document.getElementById("collections-nav"), title, false, "beforeend");
-    renderTemplate(`<h2 class="list-title" id="${title}">${title}</h2>`, this.collectionsElement, title, false, "beforeend");
-  }
-
+}
+  /*
   async renderCollectionsList(collections) {
     for (const title of collections) {
       this.renderCollectionTitle(title);
@@ -98,13 +98,15 @@ export default class personalRecipeData {
           collectionsIds.map(async (id) => {
             const recipe = await this.dataSource.getRecipeById(id);
             list.push(recipe);
+            console.log("list", list);
+            this.renderCollectionRecipes(list);
           })
         );
-        this.renderCollectionRecipes(list);
+        
       }
     }
   }
-}
+}*/
 
 
 // let collectionsIds = getLocalStorage(this.key);
