@@ -80,7 +80,6 @@ export function renderListWithTemplate(
 ) {
   list = Object.values(list);
   const htmlStrings = list.map((item) => templateFn(item));
-  console.log("is it clear: ", clear);
   if (clear) {
     parentElement.innerHTML = "";
   }
@@ -99,7 +98,7 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const recipe = urlParams.get('recipeId');
+  const recipe = urlParams.get(param);
   return recipe;
 }
 

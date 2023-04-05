@@ -11,24 +11,6 @@ export function addToCollection(recipeid) {
   setLocalStorage("All Recipes", recipeid);
 }
 
-function listRecipeGenerator(recipe) {
-  let html = `<li>
-    <div class="horizontal-recipe-card">
-        <img
-        src="${recipe.image}"
-        alt="Image of"/>
-        <div>
-        <h2>${recipe.title}</h2>
-            <p>${recipe.summary}</p>
-            <br><br>
-            <a class="button" href="../views/recipeListing.html?recipeId=${recipe.id}">View Recipe</a>
-            <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">Remove</a>
-        <div>
-    <div>
-  </li>`;
-  return html;
-}
-
 function titleCardGenerator(title) {
   let html = `<div class="collection-card">
     <a href="../views/collectionsPage.html?collectionTitle=${title}">${title}</a>`;
@@ -59,10 +41,8 @@ export default class personalRecipeData {
       const deletebtns = Array.from(deletebtnsNodeList);
       deletebtns.forEach((btn) => {
         btn.addEventListener("click", () => {
-          console.log("clicked!");
           if (confirm("Do you want to delete this collection and all associated recipes? NOTE: This action cannot be undone.")) {
           const title = btn.dataset.title;
-          console.log("Title: ", this.key);
           removeFromLocalStorage(this.collectionsKey, title);
           localStorage.removeItem(title);
           location.reload();}

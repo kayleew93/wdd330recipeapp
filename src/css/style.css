@@ -224,6 +224,7 @@ input {
   border: 2px solid var(--primary-color);
   background-color: rgb(245, 245, 245);
   margin: 1rem 2rem;
+  position: relative;
 }
 
 .horizontal-recipe-card img {
@@ -261,7 +262,7 @@ input {
   color: white;
 }
 
-.collection-card .delete-btn {
+.delete-btn {
   position: absolute;
   right: 10px;
   top: 5px;
