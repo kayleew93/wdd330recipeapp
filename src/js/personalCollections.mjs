@@ -40,12 +40,15 @@ export default class personalRecipeData {
       const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
       const deletebtns = Array.from(deletebtnsNodeList);
       deletebtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          if (confirm("Do you want to delete this collection and all associated recipes? NOTE: This action cannot be undone.")) {
-          const title = btn.dataset.title;
-          removeFromLocalStorage(this.collectionsKey, title);
-          localStorage.removeItem(title);
-          location.reload();}
+        btn.addEventListener("click", async () => {
+
+          let answer = await customConfirm();
+          if (answer) {
+            const title = btn.dataset.title;
+            removeFromLocalStorage(this.collectionsKey, title);
+            localStorage.removeItem(title);
+            location.reload();
+          }
         });
       });
     
@@ -64,4 +67,22 @@ export default class personalRecipeData {
     renderListWithTemplate(titleCardGenerator, this.listElement, list, clear);
   }
 
+}
+
+function customConfirm() {
+  return new Promise((resolve) => {
+  var dialog = document.getElementById("custom-confirm");
+  dialog.style.display = "block";
+
+  var confirmYes = document.getElementById("confirm-yes");
+  confirmYes.addEventListener("click", function() {
+    dialog.style.display = "none";
+    resolve(true);
+  });
+
+  var confirmNo = document.getElementById("confirm-no");
+  confirmNo.addEventListener("click", function() {
+    dialog.style.display = "none";
+    resolve(false);
+  });})
 }
