@@ -53,6 +53,9 @@ import {
 
         const collectionIds = getLocalStorage(this.key);
 
+        //set the h1
+        document.querySelector("h1").innerHTML = this.key;
+
         let list = [];
         if (collectionIds === null) {
           this.listElement.innerHTML = `<div class="not-found"><h1>No recipes! Go find some fun food to make!</h1><a href="../../">Go back to home</a><div><img src="https://images.unsplash.com/photo-1555861496-0666c8981751?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"><div></div>`;
@@ -64,6 +67,18 @@ import {
             })
           );}
         this.renderCollectionRecipes(list);
+
+        const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
+        const deletebtns = Array.from(deletebtnsNodeList);
+        deletebtns.forEach((btn) => {
+          console.log(btn);
+          btn.addEventListener("click", () => {
+            console.log("clicked");
+            const recipeId = btn.dataset.recipeId;
+            removeFromLocalStorage(this.key, recipeId);
+            location.reload();
+          });
+        });
 
         // add dropdown options for each value in local storage
         if (this.key == "All Recipes") {
@@ -90,18 +105,6 @@ import {
           if (dropdown.options.length === 0) {
             document.querySelector('.add-Col-Cont').classList.add("hide");
           } 
-
-
-  
-        const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
-        const deletebtns = Array.from(deletebtnsNodeList);
-        deletebtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const recipeId = btn.dataset.recipeId;
-            removeFromLocalStorage(this.key, recipeId);
-            location.reload();
-          });
-        });
     }}
   
     renderCollectionRecipes(list) {

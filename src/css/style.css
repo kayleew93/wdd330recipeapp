@@ -162,6 +162,14 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.main-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 /* RECIPE SEARCH */
 .searched-recipe-list {
   display: flex;
