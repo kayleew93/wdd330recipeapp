@@ -7,37 +7,66 @@
     <header></header>
     <main>
       <div class="search-grid">
-      <div class="search-menu">
-      <h1>Search Recipes</h1>
-        <div class="diet-checkboxes">
-          <h2>Diet:</h2>
-          <div class="diet">
-            <input type="checkbox" name="GlutenFree" id="gluten free"><label for="GlutenFree">Gluten-Free</label>
-            <input type="checkbox" name="Ketogenic" id="ketogenic"><label for="Ketogenic">Ketogenic</label>
-            <input type="checkbox" name="Vegetarian" id="vegetarian"><label for="Vegetarian">Vegetarian</label>
-            <input type="checkbox" name="Vegan" id="vegan"><label for="Vegan">Vegan</label>
-            <input type="checkbox" name="Paleo" id="paleo"><label for="Paleo">Paleo</label>
-            <input type="checkbox" name="Whole30" id="whole30"><label for="Whole30">Whole30</label>
+        <div class="search-menu">
+          <h1>Search Recipes</h1>
+          <div class="diet-checkboxes">
+            <h2>Diet:</h2>
+            <div class="diet">
+              <input type="checkbox" name="GlutenFree" id="gluten free" /><label
+                for="GlutenFree"
+                >Gluten-Free</label
+              >
+              <input type="checkbox" name="Ketogenic" id="ketogenic" /><label
+                for="Ketogenic"
+                >Ketogenic</label
+              >
+              <input type="checkbox" name="Vegetarian" id="vegetarian" /><label
+                for="Vegetarian"
+                >Vegetarian</label
+              >
+              <input type="checkbox" name="Vegan" id="vegan" /><label
+                for="Vegan"
+                >Vegan</label
+              >
+              <input type="checkbox" name="Paleo" id="paleo" /><label
+                for="Paleo"
+                >Paleo</label
+              >
+              <input type="checkbox" name="Whole30" id="whole30" /><label
+                for="Whole30"
+                >Whole30</label
+              >
+            </div>
           </div>
+          <div class="search-params">
+            <div>
+              <h2>Ingredients to Include:</h2>
+              <p>Please enter ingredients separated by a comma & no spaces.</p>
+              <p>e.g. flour,milk,butter,sugar</p>
+              <input type="text" id="ingredients-input" />
+            </div>
+            <div>
+              <h2>Ingredients to Exclude:</h2>
+              <p>
+                Please enter any ingredients to exclude separated by a comma &
+                no spaces.
+              </p>
+              <p>e.g. shellfish,peanuts,marshmallows</p>
+              <input type="text" id="exclude-ingredients-input" />
+            </div>
+          </div>
+          <br /><button
+            id="ingredients-input-button"
+            class="button find-recipes-btn"
+          >
+            Find Recipes
+          </button>
+        </div>
+        <img
+          class="search-img"
+          src="https://images.unsplash.com/photo-1576867757603-05b134ebc379?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
+        />
       </div>
-        <div class="search-params">
-          <div>
-            <h2>Ingredients to Include:</h2>
-            <p>Please enter ingredients separated by a comma & no spaces.</p>
-            <p>e.g. flour,milk,butter,sugar</p>
-            <input type="text" id="ingredients-input" />
-          </div>
-          <div>
-            <h2>Ingredients to Exclude:</h2>
-            <p>Please enter any ingredients to exclude separated by a comma & no spaces.</p>
-            <p>e.g. shellfish,peanuts,marshmallows</p>
-            <input type="text" id="exclude-ingredients-input" />
-        </div>
-        </div>
-      <br><button id="ingredients-input-button" class="button find-recipes-btn">Find Recipes</button>
-    </div>
-    <img class="search-img" src="https://images.unsplash.com/photo-1576867757603-05b134ebc379?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80">
-  </div>
       <div class="searched-recipe-list"></div>
     </main>
     <footer></footer>

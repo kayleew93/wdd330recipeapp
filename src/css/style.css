@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Qwitcher+Grypen:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Qwitcher+Grypen:wght@700&display=swap");
 :root {
   --font-body: "Montserrat", sans-serif;
   --font-headline: "Oswald", "Arial Narrow Bold", sans-serif;
@@ -28,7 +28,7 @@ body {
   padding: 1rem;
 }
 h1 {
-  font-family: 'Qwitcher Grypen', cursive;
+  font-family: "Qwitcher Grypen", cursive;
   font-size: 5rem;
   text-shadow: 1px 1px 1px var(--dark-grey);
 }
@@ -36,7 +36,7 @@ h2 {
   color: var(--tertiary-color);
   margin-top: 1rem;
   font-weight: 500;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 p {
   color: var(--dark-grey);
@@ -152,8 +152,8 @@ input {
 
 .save-btn.loved span {
   color: transparent;
-  font-size: 60px; 
-  line-height: 1; 
+  font-size: 60px;
+  line-height: 1;
   -webkit-text-stroke: 3px var(--tertiary-color);
 }
 
@@ -203,14 +203,15 @@ input {
   text-align: center;
 }
 
-#ingredients-input, #exclude-ingredients-input {
+#ingredients-input,
+#exclude-ingredients-input {
   margin-top: 15px;
   height: 3rem;
   width: 75%;
 }
 
 .diet input {
-  height: .8rem;
+  height: 0.8rem;
   margin-right: 4px;
 }
 
@@ -219,10 +220,7 @@ input {
 }
 
 .search-menu {
-
 }
-
-
 
 .search-grid {
   display: grid;
@@ -249,7 +247,7 @@ input {
   height: 100%;
 }
 .horizontal-recipe-card h2 {
-  color :var(--primary-color);
+  color: var(--primary-color);
   padding-bottom: 1rem;
 }
 
@@ -266,17 +264,17 @@ input {
 }
 
 .collection-card {
-    height: 15rem;
-    width: 15rem;
-    font-size: 1.75rem;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: 1rem;
-    transition: scale .2s ease-in-out;
+  height: 15rem;
+  width: 15rem;
+  font-size: 1.75rem;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 1rem;
+  transition: scale 0.2s ease-in-out;
 }
 
 .collection-card:hover {
@@ -297,12 +295,13 @@ input {
   display: flex;
 }
 
-select, button {
-    position: absolute;
-    right: 5px;
-    font-family: var(--font-body);
-    font-size: var(--small-font);
-    bottom: 1rem;
+select,
+button {
+  position: absolute;
+  right: 5px;
+  font-family: var(--font-body);
+  font-size: var(--small-font);
+  bottom: 1rem;
 }
 select {
   right: 4rem;
@@ -313,7 +312,7 @@ select {
 button {
   background-color: var(--secondary-color);
   color: white;
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
   border: none;
   border-radius: 5px;
 }
@@ -401,7 +400,6 @@ footer {
   position: absolute;
   right: 0;
   bottom: 0;
-  
 }
 
 .dialog-buttons button {
