@@ -18,12 +18,27 @@ import {
               <p>${recipe.summary}</p>
               <br><br>
               <a class="button" href="../views/recipeListing.html?recipeId=${recipe.id}">View Recipe</a>
-              <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">×</a>
-              ${localStorage.getItem('temp') === "All Recipes" ? `<div class="dropdown-container addColl"></div><button class="addColl add-btn" data-recipe-id="${recipe.id}">Add</button>` : ''}
-          <div>
+              <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">×</a>`;
+
+              html += getDropdown(recipe);
+
+              //${localStorage.getItem('temp') === "All Recipes" ? `<div class="dropdown-container addColl"></div><button class="addColl add-btn" data-recipe-id="${recipe.id}">Add</button>` : ''}
+
+
+
+          html += `<div>
       <div>
     </li>`;
     return html;
+  }
+
+  function getDropdown(recipe) {
+      let temp = localStorage.getItem('temp');
+      if (temp == "All Recipes") {
+        return `<div class="add-Col-Cont"><div class="dropdown-container addColl"></div><button class="addColl add-btn" data-recipe-id="${recipe.id}">Add</button><div>`;
+      } else {
+        return "";
+      }
   }
   
   export default class collectionRecipeData {
@@ -54,17 +69,29 @@ import {
         if (this.key == "All Recipes") {
         const dropdownContainersNodeList = document.querySelectorAll('.dropdown-container');
         const dropdownContainers = Array.from(dropdownContainersNodeList);
-        const values = getLocalStorage('collectionTitles');
+        const valuesTitles = getLocalStorage('collectionTitles');
 
         // only show list if there are other collections
-        if (values.length > 1) {
+        if (valuesTitles.length > 1) {
           dropdownContainers.forEach((container) => {
-            console.log("Values", values);
-          const options = values.map((value) => {
-            if (value == "All Recipes") {return};
-            return `<option value="${value}">${value}</option>`;
+          const options = valuesTitles.map((title) => {
+            if (title == "All Recipes") {return};
+
+            let titleValues = getLocalStorage(title);
+            const recipeId = container.nextElementSibling.dataset.recipeId;
+            if (titleValues && titleValues.includes(recipeId)) {
+              return;
+            } else {
+              return `<option value="${title}">${title}</option>`;
+            }
           }).join('');
           container.innerHTML = `<select>${options}</select>`;})}
+          const dropdown = document.querySelector('.dropdown-container select');
+          if (dropdown.options.length === 0) {
+            document.querySelector('.add-Col-Cont').classList.add("hide");
+          } 
+
+
   
         const deletebtnsNodeList = document.querySelectorAll(".delete-btn");
         const deletebtns = Array.from(deletebtnsNodeList);
