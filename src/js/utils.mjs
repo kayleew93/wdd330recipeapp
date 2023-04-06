@@ -71,11 +71,11 @@ export async function loadPartials() {
 }
 
 export async function loadPartialsM() {
-  const headTemplate = await loadTemplate("../partials/head.html");
+  const headTemplate = await loadTemplate("src/partials/head.html");
   const headElement = document.querySelector("head");
-  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerTemplate = await loadTemplate("src/partials/header.html");
   const headerElement = document.querySelector("header");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerTemplate = await loadTemplate("src/partials/footer.html");
   const footerElement = document.querySelector("footer");
 
   renderTemplate(headTemplate, headElement);
