@@ -41,7 +41,6 @@ export default class personalRecipeData {
       const deletebtns = Array.from(deletebtnsNodeList);
       deletebtns.forEach((btn) => {
         btn.addEventListener("click", async () => {
-
           let answer = await customConfirm();
           if (answer) {
             const title = btn.dataset.title;

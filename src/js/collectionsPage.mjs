@@ -21,11 +21,7 @@ import {
               <a href="#" class="delete-btn" data-recipe-id="${recipe.id}">×</a>`;
 
               html += getDropdown(recipe);
-
-              //${localStorage.getItem('temp') === "All Recipes" ? `<div class="dropdown-container addColl"></div><button class="addColl add-btn" data-recipe-id="${recipe.id}">Add</button>` : ''}
-
-
-
+              
           html += `<div>
       <div>
     </li>`;

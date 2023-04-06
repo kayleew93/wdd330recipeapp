@@ -12,8 +12,6 @@ async function convertToJson(res) {
 
 export default class SpoonacularConnection {
   constructor(category) {
-    // this.category = category;
-    // this.path = `../json/${this.category}.json`;
   }
 
   async getRecipeById(id) {
@@ -51,7 +49,7 @@ export default class SpoonacularConnection {
     if (diets) urlParams.append("diet", diets);
     if (excludeIngredients) urlParams.append("excludeIngredients", excludeIngredients);
 
-    let url = `${baseURL}/complexSearch?${urlParams.toString()}&number=1${APIKey}`;
+    let url = `${baseURL}/complexSearch?${urlParams.toString()}&number=5${APIKey}`;
     let data = await fetch(url, options).then(convertToJson);
     data = data.results;
     return data;
@@ -65,38 +63,9 @@ export default class SpoonacularConnection {
         "Content-Type": "application/json"
       }
     };
-    let data = await fetch(`${baseURL}/random?limitLicense=true&number=1${APIKey}`, options).then(convertToJson);
+    let data = await fetch(`${baseURL}/random?limitLicense=true&number=2${APIKey}`, options).then(convertToJson);
     data = Object.values(data.recipes);
     return data;
   }
 
-  async loginRequest(user) {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    };
-    const response = await fetch(baseURL + "login", options).then(
-      convertToJson
-    );
-    return response.accessToken;
-  }
-  // make a request to the server for the current orders
-  // requires: a valid token
-  // returns: a list of orders
-  async getOrders(token) {
-    const options = {
-      method: "GET",
-      // the server will reject our request if we don't include the Authorization header with a valid token!
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await fetch("http://server-nodejs.cit.byui.edu:3000/orders", options).then(
-      convertToJson
-    );
-    return response;
-  }
 }
