@@ -70,19 +70,6 @@ export async function loadPartials() {
   renderTemplate(footerTemplate, footerElement);
 }
 
-export async function loadPartialsM() {
-  const headTemplate = await loadTemplate("src/partials/head.html");
-  const headElement = document.querySelector("head");
-  const headerTemplate = await loadTemplate("src/partials/header.html");
-  const headerElement = document.querySelector("header");
-  const footerTemplate = await loadTemplate("src/partials/footer.html");
-  const footerElement = document.querySelector("footer");
-
-  renderTemplate(headTemplate, headElement);
-  renderTemplate(headerTemplate, headerElement);
-  renderTemplate(footerTemplate, footerElement);
-}
-
 // takes a list of objects & template & inserts as HTML into DOM
 export function renderListWithTemplate(
   templateFn,

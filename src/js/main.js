@@ -2,7 +2,7 @@ import { loadPartials } from "./utils.mjs";
 import SpoonacularConnection from "./SpoonacularConnection.mjs";
 import RecipeData from "./recipeRandom.mjs";
 
-loadPartialsM();
+loadPartials();
 
 const dataSource = new SpoonacularConnection();
 const element = document.querySelector(".recipes-main");
